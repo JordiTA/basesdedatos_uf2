@@ -1,0 +1,116 @@
+source: https://geotalleres.readthedocs.io/es/latest/conceptos-sql/conceptos_sql.html
+
+SELECT: 
+El comando SELECT se utiliza para recuperar datos de una o más tablas.
+Si pasa *, se devuelven todas las columnas, de lo contrario puede pasar uno o más
+argumentos de tipo select_elemento para especificar individualmente cada columna a 
+recuperar (separados por comas). Si agrega la palabra clave opcional DISTINCT a la 
+instrucción SELECT, los valores duplicados no se devolverán.
+
+No es posible ejecutar búsquedas que contengan a la vez "*" y campos explícitos. Por 
+ejemplo, la siguiente instrucción:
+
+SELECT *, SALES, TARGET FROM OFFICES
+
+... no se permite, mientras que: [SELECT * FROM OFFICES] ...se permite.
+
+AS:
+Permite renombrar una columna cuando la pides en una query con un SELECT.
+----------------------------------------------------------------------------------------
+UPDATE:
+Utilizado para modificar los valores de los campos y registros especificados. 
+Utilizado para modificar las tablas agregando campos o cambiando la definición de los campos.
+
+DROP TABLE:
+Se utiliza para eliminar una tabla por completo.
+----------------------------------------------------------------------------------------
+INSERT:
+El comando INSERT se utiliza para añadir datos a una tabla existente. La tabla en donde 
+los datos se añaden se pasa utilizando un argumento de tipo nom_sql o cadena_sql. Los 
+argumentos opcionales tipo ref_columna permiten definir las columnas en las cuales 
+insertar los valores. Si no se pasa ref_columna, los valores se insertarán en el mismo 
+orden que en la base (el primer valor pasado se insertará en la primera columna, el 
+segundo valor en la segunda columna, y así sucesivamente).
+
+INTO:
+
+INSERT INTO mitabla VALUES ( 1, 'Will' );
+----------------------------------------------------------------------------------------
+FROM:
+Utilizada para especificar la tabla de la cual se van a seleccionar los registros.
+
+WHERE:
+Utilizada para determinar los registros seleccionados en la clausula FROM.
+
+ORDER BY:
+Utilizada para ordenar los registros seleccionados de acuerdo con un orden específico.
+----------------------------------------------------------------------------------------
+AND:
+Es el “y” lógico. Evalúa dos condiciones y devuelve un valor de verdad sólo si ambas son ciertas.
+
+OR:
+Es el “o” lógico. Evalúa dos condiciones y devuelve un valor de verdad si alguna de las dos es cierta.
+
+NOT:
+Negación lógica. Devuelve el valor contrario de la expresión.
+----------------------------------------------------------------------------------------
+GROUP BY:
+Agrupar por la columna que le indiques.
+
+COUNT:
+Intimamente ligado con GROUP BY que como el nombre indica cuenta las veces que sale una repetición en el GROUP BY.
+No usar sin el GROUP BY, excepto si queremos saber cuantos resultados nos va a dar una query.
+
+EJEMPLO-->	SELECT id_character,id_item,COUNT(id_item)
+		FROM `character_items`
+		GROUP BY id_item
+----------------------------------------------------------------------------------------
+SELECT
+	id_weapon,
+	weapon,
+	COUNT(id_weapon) AS number,
+FROM id character_weapon, id_weapon,
+GROUP BY id_weapon
+----------------------------------------------------------------------------------------
+FOREING KEYS:
+Claves que se vinculan a las PRIMARY KEYS de las tablas a las que estan relacionadas.
+----------------------------------------------------------------------------------------
+INNER JOIN:
+se utiliza para relacionar varias tablas. 
+Nos permitirá obtener un listado de los campos que tienen coincidencias en ambas tablas.
+ON:
+	INNER JOIN `characters`
+		WHERE/ON characters.id_character = stats.id_character
+LEFT JOIN:
+La sentencia LEFT JOIN nos dará el resultado anterior mas los campos de la tabla de la izquierda 
+del JOIN que no tienen coincidencias en la tabla de la derecha.
+RIGHT JOIN:
+Lo mismo que el LEFT JOIN pero de la tabla de la derecha.
+
+FULL OUTER JOIN:
+Devuelve todos los campos que coincidan en las tablas independientemente de que sea la izquierda o la de la derecha.
+----------------------------------------------------------------------------------------
+MySQL FUNCTIONS: https://www.w3schools.com/sql/sql_ref_mysql.asp
+
+LAST_INSERT_ID:
+Devuelve el AUTO_INCREMENT id de el ultimo que has introducido.
+
+SUBSTRING:
+Extrae una sección de un string.
+
+REPLACE:
+Cambia una parte(si es string puede cambiar un substring) o por completo un campo que le asignemos.
+
+AVG:
+Hace la media de el campo que le pasemos.
+
+SRCMP:
+Compara strings.
+
+ROUND:
+Redondea los decimales a la cantidad que indiquemos.
+
+MAX:
+Saca el valor máximo de un campo.
+MIN:
+Saca el valor mínimo de un campo.
