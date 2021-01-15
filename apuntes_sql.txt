@@ -114,3 +114,13 @@ MAX:
 Saca el valor máximo de un campo.
 MIN:
 Saca el valor mínimo de un campo.
+----------------------------------------------------------------------------------------
+CREAR VARIABLES
+
+SET @max_cost := 100;
+
+@max_cost = 70;
+
+SELECT id_item,item,cost
+FROM items
+WHERE COST >= @max_cost;
