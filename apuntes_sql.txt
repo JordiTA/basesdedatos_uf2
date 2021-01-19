@@ -69,7 +69,7 @@ SELECT
 	id_weapon,
 	weapon,
 	COUNT(id_weapon) AS number,
-FROM id character_weapon, id_weapon,
+FROM id_character_weapon, id_weapon,
 GROUP BY id_weapon
 ----------------------------------------------------------------------------------------
 FOREING KEYS:
@@ -124,3 +124,9 @@ SET @max_cost := 100;
 SELECT id_item,item,cost
 FROM items
 WHERE COST >= @max_cost;
+----------------------------------------------------------------------------------------
+PROCEDIMIENTO Y FUNCIÓN: https://dev.mysql.com/doc/refman/8.0/en/create-procedure.html
+
+PROCEDURE -> Puede retornar los valores que queramos.
+
+FUNCTION -> Solo puede retornar un valor.
