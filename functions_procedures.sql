@@ -64,7 +64,50 @@ BEGIN
         LEAVE label1;
     END LOOP label1;
     SET @x = p1;
-END$$
+END//
 DELIMITER;
 
 CALL doiterate(1);
+
+/*-------------------------------------------------------------*/
+
+DELIMITER$$
+CREATE PROCEDURE relate_character_item (IN in_id_chararacter INT UNSIGNED, IN in_id_item INT UNSIGNED)
+BEGIN
+    
+    INSERT INTO characters_items (id_character,id_item)
+        VALUES (in_id_character,in_id_item);
+    
+END$$
+
+DELIMITER;
+
+CALL relate_character_item(2,3);
+
+/*-------------------------------------------------------------*/
+
+DELIMITER$$
+CREATE FUNCTION insert_item(in_item VARCHAR(24),in_cost INT,in_consumable BOOLEAN,in_tradeable BOOLEAN,in_weight FLOAT,in_id_item_type INT UNSIGNED ) RETURNS INT UNSIGNED
+BEGIN
+    INSERT INTO items(item,cost,consumabke,tradeable,weight,id_item_type)
+        VALUES (in_item,in_cost,in_consumabke,in_tradeable,in_weight,in_id_item_type);
+
+    RETURN LAST_INSERT_ID();
+
+END$$
+DELIMITER;
+
+/*-------------------------------------------------------------*/
+
+DELIMITER $$
+CREATE FUNCTION id_item_by_name(in_item VARCHAR(24)) RETURNS INT UNSIGNED
+BEGIN
+    SET @id := 0;
+    
+    SELECT id_item INTO @id FROM items WHERE items LIKE in_item LIMIT 1;
+    
+    RETURN @id;
+END $$
+DELIMITER;
+
+SELECT id_item_by_name('%zana');
